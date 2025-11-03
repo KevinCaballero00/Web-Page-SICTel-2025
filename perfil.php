@@ -1,4 +1,3 @@
-
 <?php
 include 'config.php';
 session_start();
@@ -23,17 +22,20 @@ $user = $result->fetch_assoc();
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi perfil - SICTel 2025</title>
     <link rel="stylesheet" href="assets/css/styleProfile.css">
 </head>
+
 <body>
     <div class="container">
         <div class="form-box active profile-box">
             <?php if ($user): ?>
                 <h2>Mi Perfil</h2>
+                <!-- Información del usuario -->
                 <div class="profile-info">
                     <div class="info-group">
                         <label>Nombre:</label>
@@ -52,7 +54,21 @@ $user = $result->fetch_assoc();
                         <p><?php echo htmlspecialchars($user['role']); ?></p>
                     </div>
                 </div>
+                <!-- Botones de acción -->
+                <?php if ($user['role'] === 'Ponente'): ?>
+                    <button onclick="window.location.href='formulario.php'">Inscribir Ponencia</button>
+                <?php endif; ?>
+
+                <?php if ($user['role'] === 'Evaluador'): ?>
+                    <button onclick="window.location.href='gestion_formularios.php'">Ver Ponencias</button>
+                <?php endif; ?>
+
+                <?php if ($user['role'] === 'Administrador'): ?>
+                    <button onclick="window.location.href='gestion_admin.php'">Administrar Usuarios</button>
+                <?php endif; ?>
+
                 <button onclick="window.location.href='login.php'">Cerrar Sesión</button>
+
                 <button onclick="window.location.href='index.html'">Volver al Inicio</button>
             <?php else: ?>
                 <p class="error-message">No se encontraron datos del usuario.</p>
@@ -60,4 +76,5 @@ $user = $result->fetch_assoc();
         </div>
     </div>
 </body>
+
 </html>

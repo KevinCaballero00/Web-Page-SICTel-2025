@@ -73,15 +73,15 @@ h2 {
 
 .profile-box button {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     background: #F5A126;
     border-radius: 6px;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     color: #1d1a17;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     transition: 0,5s;
 }
 

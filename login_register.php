@@ -3,6 +3,7 @@
 session_start();
 require_once 'config.php';
 
+// Registro de usuario
 if (isset($_POST['register'])) {
     $name = $_POST['name'];
     $lastName = $_POST['lastName'];
@@ -32,6 +33,7 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
+            $_SESSION['role'] = $user['role'];
 
             if ($user['role'] === 'Administrador') {
                 header("Location: index.html");

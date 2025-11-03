@@ -1,12 +1,13 @@
 <?php
 require_once 'config.php';
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: formulario.php');
     exit;
 }
 
-// Sanitize / map inputs (nombres corregidos para coincidir con formulario.php)
+// Obtener y limpiar datos del formulario
 $email     = trim($_POST['email_form'] ?? '');
 $modalidad = trim($_POST['modalidad'] ?? '');
 $estado    = trim($_POST['estado'] ?? '');
@@ -20,6 +21,18 @@ $programa  = trim($_POST['programa'] ?? '');
 $grupo_inv = trim($_POST['grupo_inv'] ?? '');
 $institu   = trim($_POST['institu'] ?? '');
 $ubicacion = trim($_POST['ubicacion'] ?? '');
+
+// Si hay sesión de usuario, usar nombre/email de la sesión (asegura que la ponencia quede vinculada al usuario autenticado)
+if (!empty($_SESSION['name'])) {
+    $ponente = $_SESSION['name'];
+}
+if (!empty($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+}
+
+// Estado de evaluación por defecto (requiere haber ejecutado el ALTER TABLE)
+$eval_status = 'Pendiente';
+$revisado = 0;
 
 // Validación mínima
 $errors = [];
@@ -38,8 +51,9 @@ if (!empty($errors)) {
 }
 
 // Insert usando prepared statement (tabla 'formularios')
-$sql = "INSERT INTO formularios (email_form, modalidad, estado, name_form, ponente, documento, num_doc, telefono, niv_estu, programa, grupo_inv, institu, ubicacion)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO formularios 
+    (email_form, modalidad, estado, name_form, ponente, documento, num_doc, telefono, niv_estu, programa, grupo_inv, institu, ubicacion, eval_status, revisado)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
@@ -47,8 +61,8 @@ if (!$stmt) {
     die('Error del servidor.');
 }
 
-$bind = $stmt->bind_param(
-    'sssssssssssss',
+$stmt->bind_param(
+    'ssssssssssssssi',
     $email,
     $modalidad,
     $estado,
@@ -61,19 +75,16 @@ $bind = $stmt->bind_param(
     $programa,
     $grupo_inv,
     $institu,
-    $ubicacion
+    $ubicacion,
+    $eval_status,
+    $revisado
 );
 
-if (!$bind) {
-    error_log('Bind failed: ' . $stmt->error);
-    die('Error del servidor.');
-}
 
-$exec = $stmt->execute();
-if ($exec) {
+if ($stmt->execute()) {
     header('Location: formulario.php?success=1');
 } else {
-    error_log('Execute failed: ' . $stmt->error);
+    error_log('Error ejecutando SQL: ' . $stmt->error);
     header('Location: formulario.php?error=1');
 }
 
