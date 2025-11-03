@@ -212,8 +212,10 @@
                     <div class="input-wrap">
                         <h2 class="sec-title">INSCRIPCIÓN DE PONENCIA A LA 12va SEMANA INTERNACIONAL DE CIENCIA, TECNOLOGÍA E INNOVACIÓN 2025</h2>
 
-                        <input type="email" name="emailForm" placeholder="Correo Electronico">
+                        <!--******************************** Correo ********************************-->
+                        <input type="email" name="email_form" placeholder="Correo Electronico">
 
+                        <!--******************************** Modalidad ********************************-->
                         <select name="modalidad" required>
                             <option value="">-Indique la Modalidad en la que desea participar-</option>
                             <option value="modalidad-1">Modalidad oral presencial</option>
@@ -221,16 +223,20 @@
                             <option value="modalidad-3">Modalidad póster presencial</option>
                         </select>
 
+                        <!--******************************** Estado ********************************-->
                         <select name="estado" required>
                             <option value="">-Indique el Estado del Proyecto de Investigación que va a presentar-</option>
                             <option value="estado-1">En Ejecución</option>
                             <option value="estado-2">Finalizado</option>
                         </select>
 
-                        <input type="text" name="nameForm" placeholder="Titulo de la Ponencia">
+                        <!--******************************** Titulo ********************************-->
+                        <input type="text" name="name_form" placeholder="Titulo de la Ponencia">
 
+                        <!--******************************** Nombre ********************************-->
                         <input type="text" name="ponente" placeholder="Nombre Completo del ponente">
 
+                        <!--******************************** Documento ********************************-->
                         <select name="documento" required>
                             <option value="">-Tipo de Documento de Identidad-</option>
                             <option value="doc-1">CC=Cédula de Ciudadanía</option>
@@ -240,11 +246,14 @@
                             <option value="doc-5">DNI=Documento Nacional de Identidad</option>
                         </select>
 
-                        <input type="text" name="num-doc" placeholder="Número de Identificación sin punto de separación">
+                        <!--******************************** Numero de cedula ********************************-->
+                        <input type="text" name="num_doc" placeholder="Número de Identificación sin punto de separación">
 
+                        <!--******************************** Telefono ********************************-->
                         <input type="text" name="telefono" placeholder="Número Telefónico del Ponente">
 
-                        <select name="niv-estu" required>
+                        <!--******************************** Nivel estudio ********************************-->
+                        <select name="niv_estu" required>
                             <option value="">-Indicar el último nivel de estudio obtenido por el ponente-</option>
                             <option value="niv-estu-1">Nivel Técnico</option>
                             <option value="niv-estu-2">Nivel Tecnológico</option>
@@ -258,6 +267,7 @@
                             <option value="niv-estu-10">Postdoctorado</option>
                         </select>
 
+                        <!--******************************** Programa ********************************-->
                         <select name="programa" required>
                             <option value="">-Seleccione su programa academico-</option>
                             <option value="programa-1">Administración de Empresas</option>
@@ -296,9 +306,217 @@
                             <option value="programa-35">Trabajo Social</option>
                             <option value="programa-36">Zootecnia</option>
                         </select>
+
+                        <!--******************************** Grupo de investigacion ********************************-->
+                        <select name="grupo_inv" required>
+                            <option value="">-Seleccione Su grupo de Investigación-</option>
+                            <option value="grupo-1">Ninguno</option>
+                            <option value="grupo-2">GRUPO DE INVESTIGACIÓN AMBIENTE Y VIDA - GIAV</option>
+                            <option value="grupo-3">GRUPO DE INVESTIGACIÓN EN CIENCIAS AGRONÓMICAS Y PECUARIAS - GICAP</option>
+                            <option value="grupo-4">GRUPO DE INVESTIGACIÓN EN CIENCIA Y TECNOLOGÍA AGROINDUSTRIAL - GICITECA</option>
+                            <option value="grupo-5">GRUPO DE INVESTIGACIÓN EN REPRODUCCIÓN ANIMAL TROPICAL - TROPSYNC</option>
+                            <option value="grupo-6">GRUPO DE INVESTIGACIÓN EN PROCESOS AMBIENTALES - GIPROAM UFPS</option>
+                            <option value="grupo-7">GRUPO DE INVESTIGACIÓN EN DIAGNÓSTICO Y MANEJO DE ENFERMEDADES EN PLANTAS - GIDMEP</option>
+                            <option value="grupo-8">GRUPO DE INVESTIGACIÓN EN FLUIDOS Y TÉRMICAS - FLUTER</option>
+                            <option value="grupo-9">GRUPO DE INVESTIGACIÓN Y DESARROLLO DE INGENIERÍA DEL SOFTWARE - GIDISOFT</option>
+                            <option value="grupo-10">GRUPO DE INVESTIGACIÓN EN DISEÑO MECÁNICO, MATERIALES Y PROCESOS - GIDIMA</option>
+                            <option value="grupo-11">GRUPO DE INVESTIGACIÓN EN GEOTECNIA AMBIENTAL - GIGA</option>
+                            <option value="grupo-12">GRUPO DE INVESTIGACION EN PRODUCTIVIDAD Y COMPETITIVIDAD - GIPYC</option>
+                            <option value="grupo-13">GRUPO DE INVESTIGACIÓN Y DESARROLLO EN ELECTRÓNICA Y TELECOMUNICACIONES - GT GIDET</option>
+                            <option value="grupo-14">GRUPO DE INVESTIGACIÓN Y DESARROLLO EN MICROELECTRÓNICA APLICADA Y CONTROL UFPS - GIDMAC</option>
+                            <option value="grupo-15">GRUPO DE INVESTIGACIÓN EN INNOVACIÓN Y GESTIÓN PRODUCTIVA - GIINGPRO</option>
+                            <option value="grupo-16">GRUPO DE INVESTIGACIÓN EN AUTOMATIZACIÓN Y CONTROL - GIAC</option>
+                            <option value="grupo-17">GRUPO DE INVESTIGACION EN GEOLOGÍA, GEOTECNIA Y MINERÍA - GI.GEOENERGIA</option>
+                            <option value="grupo-18">GRUPO DE INVESTIGACIÓN POLIMATAS</option>
+                            <option value="grupo-19">GRUPO DE INVESTIGACIÓN EN HIDROLOGÍA Y RECURSOS HÍDRICOS - HYDROS</option>
+                            <option value="grupo-20">GRUPO DE INVESTIGACIÓN EN TRANSPORTE Y OBRAS CIVILES - GITOC</option>
+                            <option value="grupo-21">GRUPO DE INVESTIGACIÓN EN DESARROLLO DE PROCESOS INDUSTRIALES - GIDPI</option>
+                            <option value="grupo-22">GRUPO DE INVESTIGACIÓN INGENIERÍA Y DESARROLLO SOCIAL UFPS - INDES</option>
+                            <option value="grupo-23">GRUPO DE INVESTIGACIÓN Y DESARROLLO EN ENERGÍA - GRIDEN</option>
+                            <option value="grupo-24">GRUPO DE INVESTIGACIÓN EN INTELIGENCIA ARTIFICIAL UFPS - GIA</option>
+                            <option value="grupo-25">GRUPO DE INVESTIGACIÓN EN INFRAESTRUCTURA VIAL UFPS - GINFRAVIAL</option>
+                            <option value="grupo-26">GRUPO DE INVESTIGACIÓN EN TECNOLOGÍA, INNOVACIÓN Y SOCIEDAD UFPS - GITecInSo</option>
+                            <option value="grupo-27">GRUPO DE INVESTIGACIÓN DE NUEVOS BIOMATERIALES - GINBIOMA</option>
+                            <option value="grupo-28">GRUPO DE INVESTIGACIÓN EN TECNOLOGÍA CERÁMICA - GITEC</option>
+                            <option value="grupo-29">GRUPO DE INVESTIGACIÓN ENSEÑANZA DE LAS CIENCIAS - ARQUIMEDES</option>
+                            <option value="grupo-30">GRUPO DE INVESTIGACIÓN EN CIENCIAS BIOLÓGICAS - MAJUMBA</option>
+                            <option value="grupo-31">GRUPO DE INVESTIGACIÓN EN QUÍMICA BÁSICA APLICADA - GIQUIBA</option>
+                            <option value="grupo-32">GRUPO DE INVESTIGACIÓN EN FITOBIOQUÍMICA Y BIOLOGÍA MOLECULAR - FITOBIOMOL</option>
+                            <option value="grupo-33">GRUPO DE INVESTIGACIÓN EN MATERIALES POLIMÉRICOS - GIMAPOL</option>
+                            <option value="grupo-34">GRUPO DE INVESTIGACIÓN EULER</option>
+                            <option value="grupo-35">GRUPO DE INVESTIGACIÓN EN INSTRUMENTACIÓN Y FÍSICA DE LA MATERIA CONDENSADA - GIFIMAC</option>
+                            <option value="grupo-36">GRUPO DE INVESTIGACIÓN EN ESTADÍSTICA APLICADA - GRAUNT</option>
+                            <option value="grupo-37">GRUPO DE INVESTIGACIÓN EN CONOCIMIENTO E INNOVACIÓN SOCIAL - QUETELET</option>
+                            <option value="grupo-38">GRUPO DE INVESTIGACIÓN EN RECURSOS ENERGÉTICOS Y MATERIALES - GIREM</option>
+                            <option value="grupo-39">GRUPO DE INVESTIGACIÓN EN FÍSICA DE MATERIALES NANOESTRUCTURADOS - GFMN</option>
+                            <option value="grupo-40">GRUPO DE INVESTIGACIÓN & DESARROLLO REGIONAL UFPS - IDR</option>
+                            <option value="grupo-41">GRUPO DE INVESTIGACIÓN CONTABLE CINERA - GICC</option>
+                            <option value="grupo-42">GRUPO DE INVESTIGACION PARA EL DESARROLLO SOCIOECONOMICO - GIDSE</option>
+                            <option value="grupo-43">GRUPO DE INVESTIGACIÓN ZULIMA SICENCE - ZSC</option>
+                            <option value="grupo-44">GRUPO DE INVESTIGACIÓN CIENCIAS SOCIALES Y HUMANAS - GICSH</option>
+                            <option value="grupo-45">GRUPO DE INVESTIGACIÓN GERENCIA Y ESCENARIOS PARA EL DESARROLLO - GEDES</option>
+                            <option value="grupo-46">GRUPO DE INVESTIGACIÓN EN LOGÍSTICA, COMPETITIVIDAD Y NEGOCIOS INTERNACIONALES - GILOCNI</option>
+                            <option value="grupo-47">GRUPO DE INVESTIGACIÓN EN GESTIÓN Y ORGANIZACIONES - GYO</option>
+                            <option value="grupo-48">GRUPO DE INVESTIGACIÓN CONTABLE, FINANCIERO Y FISCAL - GICOFF</option>
+                            <option value="grupo-49">GRUPO DE INVESTIGACIÓN PROYECCIÓN EMPRESARIAL - GIPE</option>
+                            <option value="grupo-50">GRUPO DE INVESTIGACIÓN FORMACIÓN FINANCIERA UFPS - GIFOFI</option>
+                            <option value="grupo-51">GRUPO DE INVESTIGACIÓN & GESTIÓN UFPS - I&G</option>
+                            <option value="grupo-52">GRUPO DE INVESTIGACIÓN CONTABLE, ADMINISTRATIVA Y FINANCIERA - GICAF</option>
+                            <option value="grupo-53">GRUPO DE INVESTIGACIÓN EN ADMINISTRACIÓN FINANCIERA Y DE PROYECTOS - GIAFPRO</option>
+                            <option value="grupo-54">GRUPO DE INVESTIGACIÓN SISTEMA DE GESTIÓN Y CONTROL EMPRESARIAL - SIG&CE</option>
+                            <option value="grupo-55">GRUPO DE INVESTIGACIÓN EN ESTUDIOS SOCIALES Y PEDAGOGÍA PARA LA PAZ - GIESPPAZ</option>
+                            <option value="grupo-56">GRUPO DE INVESTIGACIÓN EN ORIENTACIÓN EDUCATIVA, VOCACIONAL Y OCUPACIONAL UFPS - GIOEVO</option>
+                            <option value="grupo-57">GRUPO DE INVESTIGACIÓN EN PROBLEMAS SOCIOECONÓMICOS, REGIONALES Y FRONTERIZOS UFPS - GIPSERF</option>
+                            <option value="grupo-58">GRUPO DE INVESTIGACIÓN JURÍDICO, COMERCIAL Y FRONTERIZO UFPS - GIJCF</option>
+                            <option value="grupo-59">GRUPO DE INVESTIGACIÓN EN ARQUITECTURA Y MATERIALES ALTERNATIVOS UFPS - GRAMA</option>
+                            <option value="grupo-60">GRUPO DE INVESTIGACIÓN EN COMUNICACIÓN - APIKUNA</option>
+                            <option value="grupo-61">GRUPO DE INVESTIGACIÓN EN PEDAGOGÍA Y PRÁCTICA PEDAGÓGICA UFPS - INPEPRA</option>
+                            <option value="grupo-62">GRUPO DE INVESTIGACIÓN TALLER DE ARQUITECTURA Y GESTIÓN DEL TERRITORIO - TAR_GET</option>
+                            <option value="grupo-63">GRUPO DE INVESTIGACIÓN TRABAJO SOCIAL UFPS - GITS</option>
+                            <option value="grupo-64">GRUPO DE INVESTIGACIÓN DE LA CALIDAD Y EVALUACIÓN DE LA EDUCACIÓN - GCIES</option>
+                            <option value="grupo-65">GRUPO DE INVESTIGACIÓN LABORATORIO DE INVESTIGACIÓN EN DISEÑO D_LAB</option>
+                            <option value="grupo-66">GRUPO DE INVESTIGACIÓN EN COMUNICACIÓN Y MEDIOS - GICOM UFPS</option>
+                            <option value="grupo-67">GRUPO DE INVESTIGACIÓN EN JUSTICIA, DERECHOS HUMANOS Y DEMOCRACIA - JHUSDEM</option>
+                            <option value="grupo-68">GRUPO DE INVESTIGACIÓN PEDAGOGÍA, CIENCIA Y ESPIRITUALIDAD UNIVERSIDAD SANTO TOMÁS - UFPS</option>
+                            <option value="grupo-69">GRUPO DE INVESTIGACIÓN EN TECNOLOGÍA EDUCATIVA, INNOVACIÓN Y PRÁCTICAS FORMATIVAS UFPS - GITIP</option>
+                            <option value="grupo-70">GRUPO DE INVESTIGACIÓN EN EDUCACIÓN EN CIENCIA, TECNOLOGÍA, INGENIERÍA, MATEMÁTICAS Y ARTE - GIESTEMA</option>
+                            <option value="grupo-71">GRUPO DE INVESTIGACIÓN EN PEDAGOGÍA Y GESTIÓN AMBIENTAL UFPS - GIPGEAM</option>
+                        </select>
+
+                        <!--******************************** Instituto ********************************-->
+                        <select name="institu" required>
+                            <option value="">Seleccione su institución</option>
+                            <option value="inst-1">UNIVERSIDAD FRANCISCO DE PAULA SANTANDER - CÚCUTA</option>
+                            <option value="inst-2">UNIVERSIDAD FRANCISCO DE PAULA SANTANDER - OCAÑA</option>
+                            <option value="inst-3">COLEGIO MAYOR DE NUESTRA SEÑORA DEL ROSARIO</option>
+                            <option value="inst-4">CORPORACION UNIVERSIDAD DE INVESTIGACION Y DESARROLLO - UDI</option>
+                            <option value="inst-5">CORPORACION UNIVERSIDAD DE LA COSTA CUC</option>
+                            <option value="inst-6">CORPORACION UNIVERSIDAD PILOTO DE COLOMBIA</option>
+                            <option value="inst-7">ESCUELA NAVAL DE CADETES ALMIRANTE PADILLA</option>
+                            <option value="inst-8">FUNDACION UNIVERSIDAD AUTONOMA DE COLOMBIA - FUAC</option>
+                            <option value="inst-9">FUNDACION UNIVERSIDAD DE AMERICA</option>
+                            <option value="inst-10">FUNDACION UNIVERSIDAD DE BOGOTA - JORGE TADEO LOZANO</option>
+                            <option value="inst-11">PONTIFICIA UNIVERSIDAD JAVERIANA</option>
+                            <option value="inst-12">UNIDAD TECNOLÓGICA DEL MAGDALENA MEDIO - UTEM</option>
+                            <option value="inst-13">UNIVERSIDAD ANTONIO NARIÑO</option>
+                            <option value="inst-14">UNIVERSIDAD AUTONOMA DE BUCARAMANGA - UNAB</option>
+                            <option value="inst-15">UNIVERSIDAD AUTONOMA DE MANIZALES</option>
+                            <option value="inst-16">UNIVERSIDAD AUTONOMA DE OCCIDENTE</option>
+                            <option value="inst-17">UNIVERSIDAD AUTONOMA DEL CARIBE - UNIAUTONOMA</option>
+                            <option value="inst-18">UNIVERSIDAD AUTONOMA LATINOAMERICANA - UNAULA</option>
+                            <option value="inst-19">UNIVERSIDAD CATOLICA DE COLOMBIA</option>
+                            <option value="inst-20">UNIVERSIDAD CATOLICA DE MANIZALES</option>
+                            <option value="inst-21">UNIVERSIDAD CATOLICA DE ORIENTE - UCO</option>
+                            <option value="inst-22">UNIVERSIDAD CATOLICA DE PEREIRA</option>
+                            <option value="inst-23">UNIVERSIDAD CATÓLICA LUIS AMIGÓ</option>
+                            <option value="inst-24">UNIVERSIDAD CENTRAL</option>
+                            <option value="inst-25">UNIVERSIDAD CES</option>
+                            <option value="inst-26">UNIVERSIDAD COLEGIO MAYOR DE CUNDINAMARCA</option>
+                            <option value="inst-27">UNIVERSIDAD COOPERATIVA DE COLOMBIA</option>
+                            <option value="inst-28">UNIVERSIDAD DE ANTIOQUIA</option>
+                            <option value="inst-29">UNIVERSIDAD DE BOYACA - UNIBOYACA</option>
+                            <option value="inst-30">UNIVERSIDAD DE CALDAS</option>
+                            <option value="inst-31">UNIVERSIDAD DE CARTAGENA</option>
+                            <option value="inst-32">UNIVERSIDAD DE CIENCIAS APLICADAS Y AMBIENTALES - UDCA</option>
+                            <option value="inst-33">UNIVERSIDAD DE CORDOBA</option>
+                            <option value="inst-34">UNIVERSIDAD DE CUNDINAMARCA - UDEC</option>
+                            <option value="inst-35">UNIVERSIDAD DE IBAGUE</option>
+                            <option value="inst-36">UNIVERSIDAD DE LA AMAZONIA</option>
+                            <option value="inst-37">UNIVERSIDAD DE LA GUAJIRA</option>
+                            <option value="inst-38">UNIVERSIDAD DE LA SABANA</option>
+                            <option value="inst-39">UNIVERSIDAD DE LA SALLE</option>
+                            <option value="inst-40">UNIVERSIDAD DE LOS ANDES</option>
+                            <option value="inst-41">UNIVERSIDAD DE LOS LLANOS</option>
+                            <option value="inst-42">UNIVERSIDAD DE MANIZALES</option>
+                            <option value="inst-43">UNIVERSIDAD DE MEDELLIN</option>
+                            <option value="inst-44">UNIVERSIDAD DE NARIÑO</option>
+                            <option value="inst-45">UNIVERSIDAD DE PAMPLONA</option>
+                            <option value="inst-46">UNIVERSIDAD DE SAN BUENAVENTURA</option>
+                            <option value="inst-47">UNIVERSIDAD DE SANTANDER - UDES</option>
+                            <option value="inst-48">UNIVERSIDAD DE SUCRE</option>
+                            <option value="inst-49">UNIVERSIDAD DEL ATLANTICO</option>
+                            <option value="inst-50">UNIVERSIDAD DEL CAUCA</option>
+                            <option value="inst-51">UNIVERSIDAD DEL MAGDALENA - UNIMAGDALENA</option>
+                            <option value="inst-52">UNIVERSIDAD DEL NORTE</option>
+                            <option value="inst-53">UNIVERSIDAD DEL PACIFICO</option>
+                            <option value="inst-54">UNIVERSIDAD DEL QUINDIO</option>
+                            <option value="inst-55">UNIVERSIDAD DEL SINU - ELIAS BECHARA ZAINUM - UNISINU</option>
+                            <option value="inst-56">UNIVERSIDAD DEL TOLIMA</option>
+                            <option value="inst-57">UNIVERSIDAD DEL VALLE</option>
+                            <option value="inst-58">UNIVERSIDAD DISTRITAL FRANCISCO JOSE DE CALDAS</option>
+                            <option value="inst-59">UNIVERSIDAD EAFIT</option>
+                            <option value="inst-60">UNIVERSIDAD EAN</option>
+                            <option value="inst-61">UNIVERSIDAD ECCI</option>
+                            <option value="inst-62">UNIVERSIDAD EIA</option>
+                            <option value="inst-63">UNIVERSIDAD EL BOSQUE</option>
+                            <option value="inst-64">UNIVERSIDAD EXTERNADO DE COLOMBIA</option>
+                            <option value="inst-65">UNIVERSIDAD ICESI</option>
+                            <option value="inst-66">UNIVERSIDAD INCCA DE COLOMBIA</option>
+                            <option value="inst-67">UNIVERSIDAD INDUSTRIAL DE SANTANDER</option>
+                            <option value="inst-68">UNIVERSIDAD LA GRAN COLOMBIA</option>
+                            <option value="inst-69">UNIVERSIDAD LIBRE</option>
+                            <option value="inst-70">UNIVERSIDAD MANUELA BELTRAN - UMB</option>
+                            <option value="inst-71">UNIVERSIDAD MARIANA</option>
+                            <option value="inst-72">UNIVERSIDAD METROPOLITANA</option>
+                            <option value="inst-73">UNIVERSIDAD MILITAR NUEVA GRANADA</option>
+                            <option value="inst-74">UNIVERSIDAD NACIONAL ABIERTA Y A DISTANCIA - UNAD</option>
+                            <option value="inst-75">UNIVERSIDAD NACIONAL DE COLOMBIA</option>
+                            <option value="inst-76">UNIVERSIDAD PEDAGOGICA NACIONAL</option>
+                            <option value="inst-77">UNIVERSIDAD PEDAGOGICA Y TECNOLOGICA DE COLOMBIA - UPTC</option>
+                            <option value="inst-78">UNIVERSIDAD PONTIFICIA BOLIVARIANA</option>
+                            <option value="inst-79">UNIVERSIDAD POPULAR DEL CESAR</option>
+                            <option value="inst-80">UNIVERSIDAD SANTIAGO DE CALI</option>
+                            <option value="inst-81">UNIVERSIDAD SANTO TOMAS</option>
+                            <option value="inst-82">UNIVERSIDAD SERGIO ARBOLEDA</option>
+                            <option value="inst-83">UNIVERSIDAD SIMON BOLIVAR</option>
+                            <option value="inst-84">UNIVERSIDAD SURCOLOMBIANA</option>
+                            <option value="inst-85">UNIVERSIDAD TECNOLOGICA DE BOLIVAR</option>
+                            <option value="inst-86">UNIVERSIDAD TECNOLOGICA DE PEREIRA - UTP</option>
+                            <option value="inst-87">UNIVERSIDAD TECNOLOGICA DEL CHOCO - DIEGO LUIS CORDOBA</option>
+                        </select>
+
+                        <!--******************************** Ubicacion ********************************-->
+                        <select name="ubicacion" required>
+                            <option value="">Seleccione una ubicación</option>
+                            <option value="ubi-1">Exterior (Internacional)</option>
+                            <option value="ubi-2">Amazonas</option>
+                            <option value="ubi-3">Antioquia</option>
+                            <option value="ubi-4">Arauca</option>
+                            <option value="ubi-5">Atlántico</option>
+                            <option value="ubi-6">Bogotá</option>
+                            <option value="ubi-7">Bolívar</option>
+                            <option value="ubi-8">Boyacá</option>
+                            <option value="ubi-9">Caldas</option>
+                            <option value="ubi-10">Caquetá</option>
+                            <option value="ubi-11">Casanare</option>
+                            <option value="ubi-12">Cauca</option>
+                            <option value="ubi-13">Cesar</option>
+                            <option value="ubi-14">Chocó</option>
+                            <option value="ubi-15">Córdoba</option>
+                            <option value="ubi-16">Cundinamarca</option>
+                            <option value="ubi-17">Guainía</option>
+                            <option value="ubi-18">Guaviare</option>
+                            <option value="ubi-19">Huila</option>
+                            <option value="ubi-20">La Guajira</option>
+                            <option value="ubi-21">Magdalena</option>
+                            <option value="ubi-22">Meta</option>
+                            <option value="ubi-23">Nariño</option>
+                            <option value="ubi-24">Norte de Santander</option>
+                            <option value="ubi-25">Putumayo</option>
+                            <option value="ubi-26">Quindío</option>
+                            <option value="ubi-27">Risaralda</option>
+                            <option value="ubi-28">San Andrés y Providencia</option>
+                            <option value="ubi-29">Santander</option>
+                            <option value="ubi-30">Sucre</option>
+                            <option value="ubi-31">Tolima</option>
+                            <option value="ubi-32">Valle del Cauca</option>
+                            <option value="ubi-33">Vaupés</option>
+                            <option value="ubi-34">Vichada</option>
+                        </select>
+
                     </div>
                     <button type="submit" name="enviar">Enviar Formulario</button>
-                    <p class="form-messages mb-0 mt-3"></p>
+
                 </div>
         </div>
         </form>
