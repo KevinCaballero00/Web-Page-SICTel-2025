@@ -25,7 +25,7 @@ function isActiveForm($formName, $activeForm) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full stack Login & Register form with user & admin page</title>
+    <title>Login y Registro SICTel 2025 - UFPS</title>
     <link rel="stylesheet" href="assets/css/styleLogin.css">
 </head>
 <body>
@@ -38,6 +38,7 @@ function isActiveForm($formName, $activeForm) {
                 <input type="password" name="password" placeholder="Contraseña" required>
                 <button type="submit" name="login">Iniciar Sesión</button>
                 <p>¿No tienes una cuenta? <a href="#" onclick="showForm('register-form')">Registrate</a></p>
+                <p><a href="index.html" onclick="">Continuar sin iniciar sesión</a></p>
             </form>
         </div>
 
