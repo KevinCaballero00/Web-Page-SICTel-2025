@@ -88,3 +88,10 @@ h2 {
 .profile-box button:hover {
     background: #f0e228;
 }
+
+.navbar .dropdown-toggle::after {
+  content: " \25BE"; /* Unicode para ▼ */
+  font-size: 1.2em;
+  margin-left: 0.3px;
+  vertical-align: middle;
+}

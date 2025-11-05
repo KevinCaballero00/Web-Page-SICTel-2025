@@ -838,3 +838,10 @@ button.swiper-pagination-bullet {
     backface-visibility: hidden;
     overflow: hidden
 }
+
+.navbar .dropdown-toggle::after {
+  content: " \25BE"; /* Unicode para ▼ */
+  font-size: 1.2em;
+  margin-left: 0.3px;
+  vertical-align: middle;
+}

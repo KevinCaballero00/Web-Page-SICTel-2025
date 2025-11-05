@@ -97,3 +97,10 @@ p a:hover {
     text-align: center;
     margin-bottom: 20px;
 }
+
+.navbar .dropdown-toggle::after {
+  content: " \25BE"; /* Unicode para ▼ */
+  font-size: 1.2em;
+  margin-left: 0.3px;
+  vertical-align: middle;
+}

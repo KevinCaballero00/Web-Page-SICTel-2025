@@ -1,5 +1,43 @@
 <?php
+require_once 'config.php';
+session_start();
 
+// Verificar si el usuario tiene permisos de administrador
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrador') {
+    header('HTTP/1.1 403 Forbidden');
+    echo 'Acceso denegado.';
+    exit;
+}
+
+// Eliminar usuario
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete_user') {
+    $id = intval($_POST['id']);
+    $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->close();
+    header('Location: gestion_admin.php');
+    exit;
+}
+
+// Editar usuario
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit_user') {
+    $id = intval($_POST['id']);
+    $name = $_POST['name'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $role = $_POST['role'];
+
+    $stmt = $conn->prepare("UPDATE users SET name = ?, lastName = ?, email = ?, role = ? WHERE id = ?");
+    $stmt->bind_param('ssssi', $name, $lastName, $email, $role, $id);
+    $stmt->execute();
+    $stmt->close();
+    header('Location: gestion_admin.php');
+    exit;
+}
+
+// Obtener lista de usuarios
+$result = $conn->query("SELECT id, name, lastName, email, role FROM users ORDER BY id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +96,7 @@
     <!--============================== Mobile Menu ============================== -->
     <div class="th-menu-wrapper">
         <div class="th-menu-area text-center">
-            <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
+            <button class="th-menu-toggle"><i class="fas fa-times"></i></button>
             <div class="mobile-logo col-lg-3">
                 <a href="index.html"><img src="assets/img/img/Y.png" alt="SICTeI"></a>
             </div>
@@ -201,21 +239,87 @@
 
     <!--============================== Gestion Area ==============================-->
 
-    <div class="body-form">
-        <div class="container">
-            <div class="form-box">
-                <h2 class="sec-title">GESTIÓN DE PONENCIAS</h2>
+    <div class="container mt-5">
+        <h2 class="text-center">Gestión de Usuarios</h2>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo htmlspecialchars($row['name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['lastName']); ?></td>
+                        <td><?php echo htmlspecialchars($row['email']); ?></td>
+                        <td><?php echo htmlspecialchars($row['role']); ?></td>
+                        <td>
+                            <!-- Botón para editar -->
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $row['id']; ?>">Editar</button>
 
-                <div class="form-group">
-                    <a href="gestion_usuarios.php" class="btn btn-gestion">Gestión de Usuarios</a>
-                    <a href="gestion_formularios.php" class="btn btn-gestion">Gestión de Formularios</a>
-            </div>
-        </div>
+                            <!-- Botón para eliminar -->
+                            <form method="post" action="gestion_admin.php" style="display:inline;">
+                                <input type="hidden" name="action" value="delete_user">
+                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <!-- Modal para editar usuario -->
+                    <div class="modal fade" id="editModal<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="editModalLabel<?php echo $row['id']; ?>" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form method="post" action="gestion_admin.php">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editModalLabel<?php echo $row['id']; ?>">Editar Usuario</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="action" value="edit_user">
+                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                        <div class="mb-3">
+                                            <label for="name<?php echo $row['id']; ?>" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="name<?php echo $row['id']; ?>" name="name" value="<?php echo htmlspecialchars($row['name']); ?>" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="lastName<?php echo $row['id']; ?>" class="form-label">Apellido</label>
+                                            <input type="text" class="form-control" id="lastName<?php echo $row['id']; ?>" name="lastName" value="<?php echo htmlspecialchars($row['lastName']); ?>" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email<?php echo $row['id']; ?>" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email<?php echo $row['id']; ?>" name="email" value="<?php echo htmlspecialchars($row['email']); ?>" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="role<?php echo $row['id']; ?>" class="form-label">Rol</label>
+                                            <select class="form-select" id="role<?php echo $row['id']; ?>" name="role" required>
+                                                <option value="Ponente" <?php if ($row['role'] === 'Ponente') echo 'selected'; ?>>Ponente</option>
+                                                <option value="Evaluador" <?php if ($row['role'] === 'Evaluador') echo 'selected'; ?>>Evaluador</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
     </div>
-</div>
 
 
-<!--============================== footer Area End ==============================-->
+    <!--============================== footer Area End ==============================-->
     <footer class="footer-wrapper footer-layout2">
         <div class="widget-area">
             <div class="container">

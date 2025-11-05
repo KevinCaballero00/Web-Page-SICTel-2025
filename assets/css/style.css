@@ -17565,4 +17565,41 @@ span.select2-selection.select2-selection--single:focus {
   text-decoration: solid;
 }
 
+/* Estilo para el ícono de flecha hacia abajo */
+.navbar .dropdown-toggle::after {
+  content: " \25BE"; /* Unicode para ▼ */
+  font-size: 1.2em;
+  margin-left: 0.3px;
+  vertical-align: middle;
+}
+
+.scroll-top {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: #2196f3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.scroll-top i {
+  color: white;
+  font-size: 18px;
+  position: absolute;
+}
+
+.scroll-top svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+}
+
+
 /*# sourceMappingURL=style.css.map */
