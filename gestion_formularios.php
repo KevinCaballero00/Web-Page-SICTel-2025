@@ -35,6 +35,32 @@ if (isset($_GET['id'])) {
 
 // Listado de ponencias
 $result = $conn->query("SELECT id, name_form, institu, modalidad, programa, estado, eval_status, revisado FROM formularios ORDER BY id DESC");
+
+// Listado de ponencias (filtrar para evaluadores)
+if (isset($_SESSION['role']) && $_SESSION['role'] === 'Evaluador') {
+    // Obtener id del usuario desde su email de sesión (si no guardas id en sesión)
+    $user_email = $_SESSION['email'] ?? '';
+    $user_id = 0;
+    if ($user_email) {
+        $stmtU = $conn->prepare("SELECT id FROM users WHERE email = ? LIMIT 1");
+        $stmtU->bind_param('s', $user_email);
+        $stmtU->execute();
+        $resU = $stmtU->get_result();
+        if ($rowU = $resU->fetch_assoc()) {
+            $user_id = intval($rowU['id']);
+        }
+        $stmtU->close();
+    }
+
+    // Si no se encontró id, devolver 0 (no mostrará nada)
+    $stmt = $conn->prepare("SELECT id, name_form, institu, modalidad, programa, estado, eval_status, revisado FROM formularios WHERE evaluador_id = ? ORDER BY id DESC");
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    // Administrador u otros roles ven todo
+    $result = $conn->query("SELECT id, name_form, institu, modalidad, programa, estado, eval_status, revisado FROM formularios ORDER BY id DESC");
+}
 ?>
 
 <!DOCTYPE html>

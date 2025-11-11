@@ -38,6 +38,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit_
 
 // Obtener lista de usuarios
 $result = $conn->query("SELECT id, name, lastName, email, role FROM users ORDER BY id DESC");
+
+// --- NUEVO: asignar ponencia a evaluador ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'assign_ponencia') {
+    $form_id = intval($_POST['form_id'] ?? 0);
+    $evaluador_id = intval($_POST['evaluador_id'] ?? 0);
+
+    if ($form_id > 0) {
+        if ($evaluador_id > 0) {
+            $stmt = $conn->prepare("UPDATE formularios SET evaluador_id = ? WHERE id = ?");
+            $stmt->bind_param('ii', $evaluador_id, $form_id);
+        } else {
+            // desasignar
+            $stmt = $conn->prepare("UPDATE formularios SET evaluador_id = NULL WHERE id = ?");
+            $stmt->bind_param('i', $form_id);
+        }
+        $stmt->execute();
+        $stmt->close();
+    }
+    header('Location: gestion_admin.php');
+    exit;
+}
+
+// Obtener lista de evaluadores para los selects (solo role = Evaluador)
+    $evaluadores = $conn->query("SELECT id, name, lastName, email FROM users WHERE role = 'Evaluador' ORDER BY name");
+
+// Obtener lista de ponencias (añadido evaluador_id)
+    $forms_result = $conn->query("SELECT id, name_form, institu, modalidad, programa, estado, eval_status, revisado, evaluador_id FROM formularios ORDER BY id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -317,6 +344,71 @@ $result = $conn->query("SELECT id, name, lastName, email, role FROM users ORDER 
             </tbody>
         </table>
     </div>
+
+    <!-- NUEVA SECCIÓN: Asignar ponencias a evaluadores -->
+    <div class="container mt-5">
+        <h2 class="text-center">Asignar Ponencias a Evaluadores</h2>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Institución</th>
+                    <th>Modalidad</th>
+                    <th>Evaluador asignado</th>
+                    <th>Asignar Evaluador</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($f = $forms_result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $f['id']; ?></td>
+                        <td><?php echo htmlspecialchars($f['name_form']); ?></td>
+                        <td><?php echo htmlspecialchars($f['institu']); ?></td>
+                        <td><?php echo htmlspecialchars($f['modalidad']); ?></td>
+                        <td>
+                            <?php
+                                $assigned_name = 'Sin asignar';
+                                if (!empty($f['evaluador_id'])) {
+                                    // buscar el nombre del evaluador (puede mejorarse con JOIN en la query)
+                                    $qid = intval($f['evaluador_id']);
+                                    $r = $conn->query("SELECT name, lastName FROM users WHERE id = $qid LIMIT 1");
+                                    if ($rr = $r->fetch_assoc()) {
+                                        $assigned_name = htmlspecialchars($rr['name'].' '.$rr['lastName']);
+                                    }
+                                }
+                                echo $assigned_name;
+                            ?>
+                        </td>
+                        <td>
+                            <form method="post" action="gestion_admin.php" class="d-flex align-items-center">
+                                <input type="hidden" name="action" value="assign_ponencia">
+                                <input type="hidden" name="form_id" value="<?php echo $f['id']; ?>">
+                                <select name="evaluador_id" class="form-select me-2" style="width:auto">
+                                    <option value="0">-- Sin asignar --</option>
+                                    <?php if ($evaluadores): ?>
+                                        <?php
+                                            // reset pointer si ya fue leída anteriormente
+                                            $evaluadores->data_seek(0);
+                                            while ($ev = $evaluadores->fetch_assoc()):
+                                                $sel = ($ev['id'] == $f['evaluador_id']) ? 'selected' : '';
+                                        ?>
+                                            <option value="<?php echo $ev['id']; ?>" <?php echo $sel; ?>>
+                                                <?php echo htmlspecialchars($ev['name'].' '.$ev['lastName'].' ('.$ev['email'].')'); ?>
+                                            </option>
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-primary">Asignar</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
+
+<!-- ...existing code... -->
 
 
     <!--============================== footer Area End ==============================-->
