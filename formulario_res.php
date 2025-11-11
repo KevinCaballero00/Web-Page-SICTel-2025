@@ -50,14 +50,15 @@ if (!empty($errors)) {
     exit;
 }
 
-// ===== Manejo del archivo PDF =====
+// ===== Manejo del archivo PDF (ahora acepta archivos Word) =====
 $archivo_pdf = null;
 if (isset($_FILES['archivo_pdf']) && $_FILES['archivo_pdf']['error'] === UPLOAD_ERR_OK) {
     $nombreTmp = $_FILES['archivo_pdf']['tmp_name'];
     $nombreArchivo = basename($_FILES['archivo_pdf']['name']);
     $ext = strtolower(pathinfo($nombreArchivo, PATHINFO_EXTENSION));
 
-    if ($ext === 'pdf') {
+    // Aceptar solo Word (.doc o .docx)
+    if (in_array($ext, ['doc', 'docx'])) {
         $directorioDestino = 'uploads/';
         if (!is_dir($directorioDestino)) {
             mkdir($directorioDestino, 0777, true);
@@ -70,14 +71,15 @@ if (isset($_FILES['archivo_pdf']) && $_FILES['archivo_pdf']['error'] === UPLOAD_
         if (move_uploaded_file($nombreTmp, $rutaDestino)) {
             $archivo_pdf = $rutaDestino;
         } else {
-            die('Error al guardar el archivo PDF.');
+            die('Error al guardar el archivo Word.');
         }
     } else {
-        die('Solo se permiten archivos PDF.');
+        die('Solo se permiten archivos Word (.doc o .docx).');
     }
 } else {
-    die('Debe subir un archivo PDF.');
+    die('Debe subir un archivo Word.');
 }
+
 
 
 // Insert usando prepared statement (tabla 'formularios')

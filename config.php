@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $user = "root";
-$password = "anais";
+$password = "";
 $database = "sictel_db";
 
 $conn = new mysqli($host, $user, $password, $database);

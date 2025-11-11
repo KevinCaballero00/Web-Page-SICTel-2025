@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
 }
 
 // Listado de ponencias
-$result = $conn->query("SELECT id, name_form, ponente, email_form, modalidad, estado, eval_status, revisado FROM formularios ORDER BY id DESC");
+$result = $conn->query("SELECT id, name_form, institu, modalidad, programa, estado, eval_status, revisado FROM formularios ORDER BY id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -247,12 +247,11 @@ $result = $conn->query("SELECT id, name_form, ponente, email_form, modalidad, es
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Título</th>
-                            <th>Ponente</th>
-                            <th>Correo</th>
-                            <th>Modalidad</th>
-                            <th>Proyecto</th>
-                            <th>Estado Eval</th>
+                            <th>Título de la Ponencia</th>
+                            <th>Institución a la que Pertenece</th>
+                            <th>Modalidad de Participación</th>
+                            <th>Área de Conocimiento</th>
+                            <th>Estado del Proyecto</th>
                             <th>Revisado</th>
                             <th>Acciones</th>
                         </tr>
@@ -262,10 +261,9 @@ $result = $conn->query("SELECT id, name_form, ponente, email_form, modalidad, es
                             <tr>
                                 <td><?php echo $row['id']; ?></td>
                                 <td><?php echo htmlspecialchars($row['name_form']); ?></td>
-                                <td><?php echo htmlspecialchars($row['ponente']); ?></td>
-                                <td><?php echo htmlspecialchars($row['email_form']); ?></td>
+                                <td><?php echo htmlspecialchars($row['institu']); ?></td>
                                 <td><?php echo htmlspecialchars($row['modalidad']); ?></td>
-                                <td><?php echo htmlspecialchars($row['estado']); ?></td>
+                                <td><?php echo htmlspecialchars($row['programa']); ?></td>
                                 <td class="status-<?php echo htmlspecialchars($row['eval_status']); ?>"><?php echo htmlspecialchars($row['eval_status']); ?></td>
                                 <td><?php echo $row['revisado'] ? 'Sí' : 'No'; ?></td>
                                 <td class="row-actions">
@@ -290,8 +288,6 @@ $result = $conn->query("SELECT id, name_form, ponente, email_form, modalidad, es
                     <hr>
                     <h2 class="sec-title">Detalle Ponencia #<?php echo $detail['id']; ?></h2>
                     <p><strong>Título:</strong> <?php echo htmlspecialchars($detail['name_form']); ?></p>
-                    <p><strong>Ponente:</strong> <?php echo htmlspecialchars($detail['ponente']); ?></p>
-                    <p><strong>Correo:</strong> <?php echo htmlspecialchars($detail['email_form']); ?></p>
                     <p><strong>Modalidad:</strong> <?php echo htmlspecialchars($detail['modalidad']); ?></p>
                     <p><strong>Estado del proyecto:</strong> <?php echo htmlspecialchars($detail['estado']); ?></p>
                     <p><strong>Documento:</strong> <?php echo htmlspecialchars($detail['documento']); ?> - <?php echo htmlspecialchars($detail['num_doc']); ?></p>
@@ -301,10 +297,9 @@ $result = $conn->query("SELECT id, name_form, ponente, email_form, modalidad, es
                     <p><strong>Grupo:</strong> <?php echo htmlspecialchars($detail['grupo_inv']); ?></p>
                     <p><strong>Institución:</strong> <?php echo htmlspecialchars($detail['institu']); ?></p>
                     <p><strong>Ubicación:</strong> <?php echo htmlspecialchars($detail['ubicacion']); ?></p>
-                    <p><strong>Estado evaluación:</strong> <?php echo htmlspecialchars($detail['eval_status']); ?></p>
                     <?php if (!empty($detail['archivo_pdf'])): ?>
-                        <p><strong>Ponencia en formato PDF:</strong>
-                            <a href="<?php echo htmlspecialchars($detail['archivo_pdf']); ?>" target="_blank">Ver PDF</a>
+                        <p><strong>Ponencia en formato WORD:</strong>
+                            <a href="<?php echo htmlspecialchars($detail['archivo_pdf']); ?>" target="_blank">Descargar Ponencia</a>
                         </p>
                     <?php endif; ?>
                 <?php endif; ?>
